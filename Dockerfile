@@ -11,11 +11,14 @@ RUN yum -y groupinstall development
 
 # Install php rpm
 RUN rpm --import http://ftp.riken.jp/Linux/fedora/epel/RPM-GPG-KEY-EPEL-6 && \
-    rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+    rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
+
+# Replace https to http
+RUN sed -i -e "s/https/http/g" /etc/yum.repos.d/webtatic.repo
 
 
 # Install crontab service
-RUN yum -y install vixie-cron crontabs
+#RUN yum -y install vixie-cron crontabs
 
 
 # Install Git need package
